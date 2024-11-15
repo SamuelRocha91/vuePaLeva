@@ -1,0 +1,35 @@
+header {
+    margin-bottom: 40px;
+    box-shadow: 2px 4px 8px black;
+}
+
+.custom-width {
+    width: 60vw;
+}
+
+caption {
+    text-align: center;
+    font-size: 30px;
+}
+
+table {
+    box-sizing: border-box;
+    width: 80%;
+}
+
+.error-orders {
+  text-align: center;
+  color: red;
+}
+
+.page-single-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
