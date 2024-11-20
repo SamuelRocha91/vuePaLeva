@@ -1,10 +1,11 @@
 const URL = 'http://localhost:3000/api/v1/establishment';
-const ESTABLISHMENT_CODE = '97TT1J';
+const ESTABLISHMENT_CODE = 'QCKFEV';
 
 const statusTranslate = {
   'pending_kitchen_confirmation': 'Pendente',
   'in_preparation': 'Em preparo',
-  'ready': 'Pronto'
+  'ready': 'Pronto',
+  'canceled': 'cancelado'
 };
 
 const formatDate = (dateTime) => {
