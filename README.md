@@ -1,4 +1,4 @@
- <img src="https://cdn-icons-png.flaticon.com/128/82/82667.png" alt="Rails Projects Logo" width="40" height="30" /> <h2> Vue "Pá Levá" </h2> <img src="https://cdn-icons-png.flaticon.com/128/82/82667.png" alt="Rails Projects Logo" width="40" height="30" /> 
+<img src="https://cdn-icons-png.flaticon.com/128/82/82667.png" alt="Rails Projects Logo" width="40" height="30"/> <h2>Vue "Pá Levá"</h2><img src="https://cdn-icons-png.flaticon.com/128/82/82667.png" alt="Rails Projects Logo" width="40" height="30"/> 
 
 
 ![Em Desenvolvimento](https://img.shields.io/badge/status-Em%20Desenvolvimento-yellow)
