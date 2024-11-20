@@ -19,7 +19,8 @@ const app = Vue.createApp({
       orders: [],
       order: {},
       status: '',
-      isDetails: false
+      isDetails: false,
+      cancel: false
     }
   },
   async mounted() {
@@ -79,7 +80,7 @@ const app = Vue.createApp({
       try {
         let response = await fetch(
           `${URL}/${ESTABLISHMENT_CODE}/orders/${code}/in-preparation`, {
-          method: 'put'
+          method: 'PUT'
         });
         if (response.ok) {
           window.alert('pedido atualizado com sucesso!');
@@ -101,6 +102,33 @@ const app = Vue.createApp({
         if (response.ok) {
           window.alert('pedido atualizado com sucesso!');
           this.isDetails = false;
+        }
+
+      } catch (error) {
+        console.error('Erro ao buscar pedidos:', error);
+      }
+    },
+
+    async cancelOrder(code) {
+      try {
+        const text = document.getElementById('justification').value
+
+        console.log(text)
+        let response = await fetch(
+          `${URL}/${ESTABLISHMENT_CODE}/orders/${code}/cancel`, {
+            method: 'PUT',
+            headers: {
+             'Content-Type': 'application/json', 
+           },
+            body: JSON.stringify({
+                justification: text
+            }),
+          }
+        );
+        if (response.ok) {
+          window.alert('pedido cancelado com sucesso!');
+          this.cancelOrder = false;
+          this.isDetails = false
         }
 
       } catch (error) {
