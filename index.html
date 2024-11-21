@@ -14,6 +14,8 @@
 </head>
 <body>
   <div id="app">
+
+   <!--  NAVBAR -->
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -43,6 +45,9 @@
       </nav>
     </header>
     <main>
+   <!-- ------------------------------>
+
+    <!-- Tela de visualização de pedidos-->      
       <table v-if="!isDetails" class='table caption-top'>
         <caption>
           Acompanhamento de pedidos
@@ -76,6 +81,9 @@
           <p>Nenhum pedido encontrado</p>
         </div>
       </table>
+     <!-- ------------------------------>
+
+      <!-- Visualização de pedido singular-->      
       <div v-else class="page-single-card">
         <button 
          class="btn btn-secondary btn"
@@ -129,10 +137,11 @@
             </button>
           </div>
         </div>
-        <div class="d-flex gap-1" v-if="cancel">
+        <div class="d-flex flex-column gap-1" v-if="cancel">
             <textarea 
               id="justification" 
               placeholder="insira sua justificativa"
+              class="form-control"
               ></textarea>
             <button 
               v-on:click="cancelOrder(order.code)" 
@@ -142,6 +151,8 @@
             </button>
           </div>
       </div>
+    <!-- ------------------------------>
+
     </main>
   </div>
 

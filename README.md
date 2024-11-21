@@ -18,7 +18,7 @@ Este projeto está sendo desenvolvido como requisito avaliativo do programa <a h
 
 Antes de iniciar a aplicação, certifique-se de que você possui um **código de estabelecimento** gerado pelo backend. Este código é necessário para que a aplicação se conecte ao restaurante correto. 
 
-No arquivo `main.js`, defina a vontante `ESTABLISHMENT_CODE` com o um código válido de restaurante:
+No arquivo `main.js`, defina a constante `ESTABLISHMENT_CODE` com o um código válido de restaurante:
 
 ```javascript
 const ESTABLISHMENT_CODE = '97TT1J'; // Substitua com um código válido gerado no backend

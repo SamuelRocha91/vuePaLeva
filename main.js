@@ -71,6 +71,7 @@ const app = Vue.createApp({
         };
       
         this.isDetails = true;
+        this.cancel = false;
       } catch (error) {
         console.error('Erro ao buscar pedidos:', error);
       }
@@ -84,7 +85,9 @@ const app = Vue.createApp({
         });
         if (response.ok) {
           window.alert('pedido atualizado com sucesso!');
-          this.isDetails = false;      
+          await this.getOrders();
+          this.isDetails = false; 
+          this.cancel = false;
         }
      
       } catch (error) {
@@ -101,7 +104,9 @@ const app = Vue.createApp({
         );
         if (response.ok) {
           window.alert('pedido atualizado com sucesso!');
+          await this.getOrders();
           this.isDetails = false;
+          this.cancel = false;
         }
 
       } catch (error) {
@@ -127,7 +132,8 @@ const app = Vue.createApp({
         );
         if (response.ok) {
           window.alert('pedido cancelado com sucesso!');
-          this.cancelOrder = false;
+          await this.getOrders();
+          this.cancel = false;
           this.isDetails = false
         }
 
