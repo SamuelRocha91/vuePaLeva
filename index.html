@@ -14,15 +14,17 @@
 </head>
 <body>
   <div id="app">
+
+   <!--  NAVBAR -->
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a 
-          class="navbar-brand text-primary btn" 
-          v-on:click="isDetails=false"
-          >
-          Restaurante Mata fome
-        </a>
+            class="navbar-brand text-primary btn" 
+            v-on:click="isDetails=false"
+            >
+            Restaurante Mata fome
+          </a>
             <div class="d-flex custom-width">
               <select class="form-select w-25" aria-label="Default select example" v-model="status">
                 <option selected>Filtrar pedido por status</option>
@@ -30,6 +32,7 @@
                 <option value="pending_kitchen_confirmation">Pendentes</option>
                 <option value="in_preparation">Em preparo</option>
                 <option value="ready">Prontos</option>
+                <option value="canceled">Cancelados</option>
               </select>
               <button 
                 class="btn btn-outline-success" 
@@ -43,6 +46,9 @@
       </nav>
     </header>
     <main>
+   <!-- ------------------------------>
+
+    <!-- Tela de visualização de pedidos-->      
       <table v-if="!isDetails" class='table caption-top'>
         <caption>
           Acompanhamento de pedidos
@@ -76,6 +82,9 @@
           <p>Nenhum pedido encontrado</p>
         </div>
       </table>
+     <!-- ------------------------------>
+
+      <!-- Visualização de pedido singular-->      
       <div v-else class="page-single-card">
         <button 
          class="btn btn-secondary btn"
@@ -83,7 +92,7 @@
          >
          Voltar
         </button>
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <div class="card-body">
             <h5 class="card-title text-center">Código: #{{ order.code }}</h5>
             <hr/>
@@ -102,14 +111,23 @@
               <p><strong>Obs:</strong> {{ item.note || 'Sem observações'}}</p>
             </li>
           </ul>
-          <p class="text-center mt-2"><strong>Total</strong> <spam class="text-success">R${{order.total}}</spam></p>
-          <div class="card-body">
+          <p class="text-center mt-2">
+            <strong>Total</strong> <spam class="text-success">R${{order.total}}</spam>
+          </p>
+          <div class="card-body d-flex gap-2">
             <button 
               v-if="order.status == 'Pendente'" 
               v-on:click="acceptOrder(order.code)" 
               class="card-link btn btn-success text-center"
               >
               Aceitar pedido
+            </button>
+            <button 
+              v-if="order.status == 'Pendente' && !cancel" 
+              v-on:click="cancel = true" 
+              class="btn btn-danger text-center"
+              >
+              Rejeitar pedido
             </button>
             <button 
               v-if="order.status == 'Em preparo'"  
@@ -120,7 +138,22 @@
             </button>
           </div>
         </div>
+        <div class="d-flex flex-column gap-1" v-if="cancel">
+            <textarea 
+              id="justification" 
+              placeholder="insira sua justificativa"
+              class="form-control"
+              ></textarea>
+            <button 
+              v-on:click="cancelOrder(order.code)" 
+              class="btn btn-danger text-center"
+              >
+              Rejeitar pedido
+            </button>
+          </div>
       </div>
+    <!-- ------------------------------>
+
     </main>
   </div>
 

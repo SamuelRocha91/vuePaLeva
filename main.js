@@ -1,10 +1,11 @@
 const URL = 'http://localhost:3000/api/v1/establishment';
-const ESTABLISHMENT_CODE = '97TT1J';
+const ESTABLISHMENT_CODE = 'QCKFEV';
 
 const statusTranslate = {
   'pending_kitchen_confirmation': 'Pendente',
   'in_preparation': 'Em preparo',
-  'ready': 'Pronto'
+  'ready': 'Pronto',
+  'canceled': 'cancelado'
 };
 
 const formatDate = (dateTime) => {
@@ -18,7 +19,8 @@ const app = Vue.createApp({
       orders: [],
       order: {},
       status: '',
-      isDetails: false
+      isDetails: false,
+      cancel: false
     }
   },
   async mounted() {
@@ -69,6 +71,7 @@ const app = Vue.createApp({
         };
       
         this.isDetails = true;
+        this.cancel = false;
       } catch (error) {
         console.error('Erro ao buscar pedidos:', error);
       }
@@ -78,11 +81,13 @@ const app = Vue.createApp({
       try {
         let response = await fetch(
           `${URL}/${ESTABLISHMENT_CODE}/orders/${code}/in-preparation`, {
-          method: 'put'
+          method: 'PUT'
         });
         if (response.ok) {
           window.alert('pedido atualizado com sucesso!');
-          this.isDetails = false;      
+          await this.getOrders();
+          this.isDetails = false; 
+          this.cancel = false;
         }
      
       } catch (error) {
@@ -99,7 +104,37 @@ const app = Vue.createApp({
         );
         if (response.ok) {
           window.alert('pedido atualizado com sucesso!');
+          await this.getOrders();
           this.isDetails = false;
+          this.cancel = false;
+        }
+
+      } catch (error) {
+        console.error('Erro ao buscar pedidos:', error);
+      }
+    },
+
+    async cancelOrder(code) {
+      try {
+        const text = document.getElementById('justification').value
+
+        console.log(text)
+        let response = await fetch(
+          `${URL}/${ESTABLISHMENT_CODE}/orders/${code}/cancel`, {
+            method: 'PUT',
+            headers: {
+             'Content-Type': 'application/json', 
+           },
+            body: JSON.stringify({
+                justification: text
+            }),
+          }
+        );
+        if (response.ok) {
+          window.alert('pedido cancelado com sucesso!');
+          await this.getOrders();
+          this.cancel = false;
+          this.isDetails = false
         }
 
       } catch (error) {
