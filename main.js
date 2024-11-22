@@ -1,5 +1,5 @@
 const URL = 'http://localhost:3000/api/v1/establishment';
-const ESTABLISHMENT_CODE = 'QCKFEV';
+const ESTABLISHMENT_CODE = '';
 
 const statusTranslate = {
   'pending_kitchen_confirmation': 'Pendente',
