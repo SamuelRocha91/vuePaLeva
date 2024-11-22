@@ -16,13 +16,37 @@ Este projeto está sendo desenvolvido como requisito avaliativo do programa <a h
 
 ### Pré-requisitos
 
-Antes de iniciar a aplicação, certifique-se de que você possui um **código de estabelecimento** gerado pelo backend. Este código é necessário para que a aplicação se conecte ao restaurante correto. 
+Antes de iniciar a aplicação, é necessário obter um **código de estabelecimento** gerado pelo backend. Este código é essencial para que a aplicação consiga se conectar ao restaurante correto.  
 
-No arquivo `main.js`, defina a constante `ESTABLISHMENT_CODE` com o um código válido de restaurante:
+#### Como Obter o Código de Estabelecimento  
 
-```javascript
-const ESTABLISHMENT_CODE = '97TT1J'; // Substitua com um código válido gerado no backend
-```
+1. Certifique-se de que a aplicação backend [Ruby on Rails](https://github.com/SamuelRocha91/rails_paleva) está configurada e funcionando corretamente.  
+2. Acesse o **Rails Console** para buscar o código de um estabelecimento já cadastrado:  
+
+   ```bash
+   rails console
+   ```
+
+3. No console, execute um comando para encontrar o código do estabelecimento. Por exemplo:  
+
+   ```ruby
+   Establishment.first.code
+   ```
+
+4. Copie o código gerado (exemplo: `97TT1J`) e guarde-o.  
+
+#### Configurando o Código na Aplicação  
+
+1. Abra o arquivo `main.js` no projeto frontend.  
+2. Localize a constante `ESTABLISHMENT_CODE` e defina-a com o código de estabelecimento obtido:  
+
+   ```javascript
+   const ESTABLISHMENT_CODE = '97TT1J'; // Substitua pelo código obtido no backend
+   ```
+
+3. Salve o arquivo.  
+
+Pronto! Agora sua aplicação está configurada para se conectar ao restaurante correto.  
 
 ### Passos para Execução
 
